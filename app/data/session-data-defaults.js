@@ -1,4 +1,6 @@
-// Use this file to set any default data
-
 module.exports = {
+  "full-name": "",
+  "email-address": "",
+  "over-18": "",
+  "devices": []
 }
