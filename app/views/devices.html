@@ -1,0 +1,46 @@
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+  What devices can you use for testing? – Help test new NHS services
+{% endblock %}
+
+{% block beforeContent %}
+  {{ backLink({
+    "href": "/over-18",
+    "text": "Go back"
+  }) }}
+{% endblock %}
+
+{% block content %}
+<div class="nhsuk-grid-row">
+  <div class="nhsuk-grid-column-two-thirds">
+
+    <form action="/devices-answer" method="post">
+
+      {{ checkboxes({
+        idPrefix: "devices",
+        name: "devices",
+        fieldset: {
+          legend: {
+            text: "What devices can you use for testing?",
+            isPageHeading: true,
+            classes: "nhsuk-fieldset__legend--l"
+          }
+        },
+        hint: {
+          text: "Select all that apply."
+        },
+        items: [
+          { value: "smartphone", text: "Smartphone", checked: 'smartphone' in data.devices },
+          { value: "tablet", text: "Tablet (like an iPad)", checked: 'tablet' in data.devices },
+          { value: "computer", text: "Computer or laptop", checked: 'computer' in data.devices }
+        ]
+      }) }}
+
+      {{ button({ text: "Continue" }) }}
+
+    </form>
+
+  </div>
+</div>
+{% endblock %}
