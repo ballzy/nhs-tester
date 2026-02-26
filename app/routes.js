@@ -1,8 +1,28 @@
-// External dependencies
-const express = require('express')
+module.exports = function (router) {
 
-const router = express.Router()
+  router.post('/name-answer', function (req, res) {
+    res.redirect('/email')
+  })
 
-// Add your routes here - above the module.exports line
+  router.post('/email-answer', function (req, res) {
+    res.redirect('/over-18')
+  })
 
-module.exports = router
+  router.post('/over-18-answer', function (req, res) {
+    var answer = req.session.data['over-18']
+    if (answer === 'yes') {
+      res.redirect('/devices')
+    } else {
+      res.redirect('/ineligible')
+    }
+  })
+
+  router.post('/devices-answer', function (req, res) {
+    res.redirect('/check-answers')
+  })
+
+  router.post('/submit', function (req, res) {
+    res.redirect('/confirmation')
+  })
+
+}
