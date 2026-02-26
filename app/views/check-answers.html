@@ -1,0 +1,53 @@
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+  Check your answers – Help test new NHS services
+{% endblock %}
+
+{% block beforeContent %}
+  {{ backLink({
+    "href": "/devices",
+    "text": "Go back"
+  }) }}
+{% endblock %}
+
+{% block content %}
+<div class="nhsuk-grid-row">
+  <div class="nhsuk-grid-column-two-thirds">
+    <h1 class="nhsuk-heading-l">Check your answers before you sign up</h1>
+
+    {{ summaryList({
+      rows: [
+        {
+          key: { text: "Full name" },
+          value: { text: data['full-name'] },
+          actions: { items: [{ href: "/name", text: "Change", visuallyHiddenText: "full name" }] }
+        },
+        {
+          key: { text: "Email address" },
+          value: { text: data['email-address'] },
+          actions: { items: [{ href: "/email", text: "Change", visuallyHiddenText: "email address" }] }
+        },
+        {
+          key: { text: "18 or over" },
+          value: { text: "Yes" if data['over-18'] == "yes" else "No" },
+          actions: { items: [{ href: "/over-18", text: "Change", visuallyHiddenText: "if you are 18 or over" }] }
+        },
+        {
+          key: { text: "Devices" },
+          value: { text: data.devices | join(", ") | capitalize },
+          actions: { items: [{ href: "/devices", text: "Change", visuallyHiddenText: "devices you use for testing" }] }
+        }
+      ]
+    }) }}
+
+    <h2 class="nhsuk-heading-m">Now send your information</h2>
+    <p>By submitting this information, you are agreeing to be contacted by the NHS about testing opportunities. We will store your data securely and you can ask for it to be removed at any time.</p>
+
+    <form action="/submit" method="post">
+      {{ button({ text: "Accept and send" }) }}
+    </form>
+
+  </div>
+</div>
+{% endblock %}
