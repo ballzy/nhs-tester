@@ -1,0 +1,24 @@
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+  You must be 18 or over to sign up – Help test new NHS services
+{% endblock %}
+
+{% block beforeContent %}
+  {{ backLink({
+    "href": "/over-18",
+    "text": "Go back"
+  }) }}
+{% endblock %}
+
+{% block content %}
+<div class="nhsuk-grid-row">
+  <div class="nhsuk-grid-column-two-thirds">
+
+    <h1 class="nhsuk-heading-l">You must be 18 or over to sign up</h1>
+    <p>We can only accept sign ups from people aged 18 or over.</p>
+    <p>This is to make sure we follow data protection rules.</p>
+
+  </div>
+</div>
+{% endblock %}
